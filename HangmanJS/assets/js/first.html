@@ -1,0 +1,98 @@
+<button id='input'>Input a Word</button>
+
+</br>
+</br>
+</br>
+<p>You get 3 wrong answers</p>
+<div id='lives'></div>
+</br>
+<div id='secret'></div>
+<div id='userAns'></div>
+<div id='showSpaces'></div>
+</br>
+<input id='letter' type='text'>
+<button id='try'>Guess</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+    $(function(){
+
+
+    var word;
+    $('#secret').hide()
+    $('#userAns').hide()
+
+    $('#input').on('click', function(){
+        word = prompt('Type in a word!').toUpperCase()
+        $('#secret').text(word)
+        for (i=0;i<word.length; i++){
+            space = '__  '
+            $('#showSpaces').text($('#showSpaces').text() + space);
+        }
+    });
+
+
+    function get_count(){
+        count = 0
+        for (i=0; i<guess_array.length; i++){
+            if (guess_array[i] == '__ '){
+                count +=1;
+            }
+        }
+        return count
+    }
+
+    guess_array = []
+    lives_array = []
+    $('#try').on('click', function(){
+        if ($('#letter').val().length > 1) {
+            alert('Please enter one letter at a time')
+        } else {
+            count_before = get_count()
+            answer = $('#secret').text()
+            guess = $('#letter').val().toUpperCase()
+            checker = /^[A-Z]*$/;
+            ans_array = []
+            for (i=0; i<answer.length; i++){
+                ans_array.push(answer[i])
+            }
+            for (i=0; i<ans_array.length; i++){
+                if (ans_array[i] == guess){
+                    guess_array[i] = guess
+                } else {
+                    if (guess_array.length < 1){
+                        lives_array.push('X')
+                    }
+                    if (guess_array[i] == null){ 
+                        guess_array[i] = '__ ';
+                    } else if (guess_array[i] == '__ '){
+                        console.log('keep')
+                    }
+                }
+            }
+        }
+        count_after = get_count()
+        console.log('before: ' + count_before + 'after: ' + count_after)
+        if (count_before == count_after){
+            lives_array.push('X')
+        }
+        if (lives_array.length == 3){
+            alert('You lose')
+        }
+        lives_taken = ''
+        for (i=0; i<lives_array.length; i++){
+            lives_taken += lives_array[i]
+        }
+        $('#lives').text(lives_array)
+        word = ''
+        for (i=0; i<guess_array.length; i++){
+            word += guess_array[i]
+        $('#showSpaces').text(word)
+        if (word == $('#secret').text()){
+            alert('You Win!')
+        }
+        }
+    });
+
+});
+</script> 

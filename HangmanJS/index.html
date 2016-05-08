@@ -1,0 +1,78 @@
+<DOCTYPE! HTML>
+<html>
+<head>
+<title>
+Hangman
+</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/custom.css" />
+
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body class='homepage'>
+	<div id="pagewrapper">
+
+		<div id='header-wrapper'>
+			<div id='header' class='container'>
+				<h3>Welcome To</h3>
+				<h1 id='logo'><a>HANGMAN.JS</a></h1>
+			</div>
+		</div>
+
+		<div id='splash'>
+			<button id="play">PLAY!</button>
+		</div>
+
+		<div id='error'>
+			<h3 id='errorHead'>Oops!</h3>
+			<p id='errorText'></p>
+			<button id='errorClose'>OK</button>
+		</div>
+
+		<div id='start'>
+			<h2>Input a Word</h2>
+			<p>Make sure the other player doesn't look!</p>
+			<form>
+				<input id='userWord' type='text'/>
+			</form>
+			</br>
+			<button id='input'>Submit</button>
+			</br>
+			</br>
+			<h2>Or Get a random word for 1 player</h2>
+			<button id="getRandom">Random Word</button>
+		</div>
+
+		<div id='gamePage'>
+
+			</br>
+			<button id="startOver">Start Over</button>
+			</br>
+			</br>
+			<h4>Don't Get 7 X's!</h4>
+			<div id='lives'></div>
+			</ul>
+			</br>
+			<div id='secret'></div>
+			<div id='userAns'></div>
+			<div id='showSpaces'></div>
+			</br>
+			<form>
+				<input id='letter' type='text'>
+			</form>
+			<br/>
+			<button id='try'>Guess</button>
+			</br>
+			</br>
+			<div id='lettersGuessed'></div>
+		</div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src='assets/js/hangmanjs.js'></script>
+</body>
+</html>

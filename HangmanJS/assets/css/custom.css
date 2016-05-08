@@ -1,0 +1,92 @@
+body {
+	text-align: center;
+}
+
+#error {
+	background: white;
+	text-align: center;
+	width: 400px;
+	height: 200px;
+	z-index: 900;
+	position: absolute;
+	top: 200;
+	left: 430;
+	border:solid 5px #ed786a;
+	border-radius: .3em;
+	text-decoration: bold;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(107,96,63,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(107,96,63,1);
+    box-shadow: 10px 10px 5px 0px rgba(107,96,63,1);
+
+}
+
+#errorHead {
+	font-size: 1.5em;
+}
+
+#error p {
+	text-align: center;
+}
+
+#header {
+
+padding-bottom: 50px;
+padding-top: 50px;
+}
+
+#play {
+	margin-top: 50px;
+	width: 300px;
+	height:70px;
+}
+
+#start {
+	margin-top: 100px;
+}
+
+#start p {
+	text-align: center;
+}
+
+#start form {
+	width: 150px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#showSpaces {
+	font-size: 2em;
+}
+
+#gameList li {
+	display: inline-block;
+}
+
+#lives {
+	font-size: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	height:50px;
+	width:300px;
+	border:solid 2px #ed786a;
+	border-radius: .3em;
+	text-decoration: bold;
+	padding-top: 8px;
+}
+
+#letter {
+	margin-right: auto;
+	margin-left: auto;
+	width: 50px;
+}
+
+#lettersGuessed {
+	height: 150px;
+	width: 200px;
+	margin-right: auto;
+	margin-left: auto;
+	border:solid 2px #ed786a;
+	border-radius: .3em;
+	text-decoration: bold;
+	padding-top: 8px;
+}
