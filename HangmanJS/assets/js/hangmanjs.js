@@ -25,7 +25,7 @@ $(function(){
     })
 
 
-// GET RAMDOM WORD API CALL
+// GET RANDOM WORD API CALL
     var api = 'http://api.wordnik.com/v4/words.json/randomWord';
     var key = 'a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
 
@@ -50,8 +50,8 @@ $(function(){
 
    randomWord =  random()
 
-   function checkForSpacesInWord(s){
-        return s.indexOf(' ') >= 0;
+   function checkForSpacesInWord(string){
+        return string.indexOf(' ') >= 0;
     }
 
     function show_error(string){
@@ -135,6 +135,12 @@ $(function(){
                     firstPressCheck = 1
                 } 
             }
+        }
+    }
+    for (i=0; i<$('#lettersGuessed').text().length;i++){
+        if (guess == $('#lettersGuessed').text()[i]){
+            show_error("You already tried that one")
+            return
         }
     }
     $('#lettersGuessed').text($('#lettersGuessed').text() + ' ' + guess)
