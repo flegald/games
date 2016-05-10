@@ -95,13 +95,14 @@ $(function(){
             show_error('Our fault. We chose an invalid word. Please click that button again.')
             randomWord = random()
             return
-        }
-        $('#secret').text(word)
-        $('#start').hide()
-        $('#gamePage').fadeToggle()
-        for (i=0;i<word.length; i++){
-            space = '__  '
-            $('#showSpaces').text($('#showSpaces').text() + space);
+        } else {
+            $('#secret').text(word)
+            $('#start').hide()
+            $('#gamePage').fadeToggle()
+            for (i=0;i<word.length; i++){
+                space = '__  '
+                $('#showSpaces').text($('#showSpaces').text() + space);
+            }
         }
     })
 // GAME LOGIC
