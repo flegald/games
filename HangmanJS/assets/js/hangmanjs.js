@@ -1,3 +1,8 @@
+function get_definition(word){
+    var request = 'http://api.wordnik.com:80/v4/word.json/' + word + '/definitions?limit=200&includeRelated=true&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+    return $.get(request);
+}
+
 $(function(){
 
     $(document).keypress(function(e) {
@@ -8,6 +13,9 @@ $(function(){
 
 
     var word;
+    var def;
+    var single_player = true;
+    ready = false;
     $('#secret').hide()
     $('#userAns').hide()
     $('#gamePage').hide()
@@ -26,33 +34,28 @@ $(function(){
 
 
 // GET RANDOM WORD API CALL
-    var api = 'http://api.wordnik.com/v4/words.json/randomWord';
-    var key = 'a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
-
-    var corpus = 1000; // higher = less complex words
-    var def = true; // only words with definitions ?
-
     function getWord(type, c) {
-        return $.get(
-            api + 
-            '?includePartOfSpeech=' + type +
-            '&hasDictionaryDef=' + def +
-            '&minCorpusCount=' + corpus + 
-            '&api_key=' + key
-        );    
+        return $.ajax({
+            url: 'http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=10&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
+            success: function(data){
+                data.definition = get_definition(data.word)
+            }
+        })
     }
 
     function random(){
-        new_word_obj = getWord('noun')
+        new_word_obj = getWord();
         return new_word_obj
 
     }
 
    randomWord =  random()
 
+
+
    function checkForSpacesInWord(string){
         return string.indexOf(' ') >= 0;
-    }
+    }           
 
     function show_error(string){
         $('#error').fadeToggle()
@@ -90,6 +93,7 @@ $(function(){
     })
 
     $('#getRandom').on('click', function(){
+        single_player = false
         word = randomWord['responseJSON'].word.toUpperCase()
         if (checkForSpacesInWord(word) || (!/^[a-zA-Z]*$/g.test(word))){
             show_error('Our fault. We chose an invalid word. Please click that button again.')
@@ -151,7 +155,11 @@ $(function(){
     }
     if (lives_array.length == 7){
         $('#errorHead').text('Sad day!')
-        show_error('The word was' + ' ' + $('#secret').text())
+        if (single_player == false){
+            show_error('The word was' + ' ' + $('#secret').text() + ' ' + randomWord['responseJSON'].definition['responseJSON'][0].text)
+        } else {
+            show_error('The word was' + ' ' + $('#secret').text())
+        }
         $('#errorClose').on('click', function(){
             location.reload()
         })
@@ -167,7 +175,11 @@ $(function(){
         $('#showSpaces').text(word)
         if (word == $('#secret').text()){
             $('#errorHead').text('Awwww Yeah!')
-            show_error('You got it!')
+            if (single_player == false){
+                show_error('You got it!' + ' ' +'The Word was ' + $('#secret').text() + ' ' + randomWord['responseJSON'].definition['responseJSON'][0].text)
+            } else {
+            show_error('The word was' + ' ' + $('#secret').text())
+            }
             $('#errorClose').on('click', function(){
                 location.reload()
             })
