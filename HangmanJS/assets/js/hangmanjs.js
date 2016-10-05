@@ -176,7 +176,7 @@ $(function(){
         if (word == $('#secret').text()){
             $('#errorHead').text('Awwww Yeah!')
             if (single_player == false){
-                show_error('You got it!' + ' ' +'The Word was ' + $('#secret').text() + ' ' + randomWord['responseJSON'].definition['responseJSON'][0].text)
+                show_error('You got it!' + ' ' +'The Word was ' + $('#secret').text())
             } else {
             show_error('The word was' + ' ' + $('#secret').text())
             }
