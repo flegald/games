@@ -156,7 +156,7 @@ $(function(){
     if (lives_array.length == 7){
         $('#errorHead').text('Sad day!')
         if (single_player == false){
-            show_error('The word was' + ' ' + $('#secret').text() + ' ' + randomWord['responseJSON'].definition['responseJSON'][0].text)
+            show_error('The word was' + ' ' + $('#secret').text())
         } else {
             show_error('The word was' + ' ' + $('#secret').text())
         }
